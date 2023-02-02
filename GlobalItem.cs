@@ -4,11 +4,14 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria;
 
+using DALib.Extensions;
+using DALib.Functions;
+
 namespace RealThrowing {
 	public class GItem : GlobalItem {
 		public override void SetDefaults(Item item) {
 			if (item.damage > 0 && item.shoot > 0 && !item.accessory) {
-				bool ToThrowing = DALib.Functions.InList(Config.Server.ForcedWeaponsLists.Throwing, DALib.Functions.GetItemID(item));
+				bool ToThrowing = Config.Server.ForcedWeaponsLists.Throwing.ContainsCI(item.GetItemID());
 				if (Functions.IsThrowable(item) || ToThrowing) {
 					item.mana = 0;
 					item.DamageType = DamageClass.Throwing;

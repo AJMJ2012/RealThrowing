@@ -109,14 +109,14 @@ namespace RealThrowing {
 			[BackgroundColor(73, 73, 73)]
 			[JsonIgnore]
 			public List<string> WeaponProjectileAIStyles => new List<string> {
-				DALib.Functions.GetProjectileAIStyleID(ProjAIStyleID.Spear),
-				DALib.Functions.GetProjectileAIStyleID(ProjAIStyleID.Drill),
-				DALib.Functions.GetProjectileAIStyleID(ProjAIStyleID.HeldProjectile),
-				DALib.Functions.GetProjectileAIStyleID(ProjAIStyleID.SleepyOctopod),
-				DALib.Functions.GetProjectileAIStyleID(ProjAIStyleID.ForwardStab),
-				DALib.Functions.GetProjectileAIStyleID(ProjAIStyleID.ShortSword),
-				DALib.Functions.GetProjectileAIStyleID(ProjAIStyleID.FirstFractal),
-				DALib.Functions.GetProjectileAIStyleID(ProjAIStyleID.Zenith),
+				"Terraria.Spear",
+				"Terraria.Drill",
+				"Terraria.HeldProjectile",
+				"Terraria.SleepyOctopod",
+				"Terraria.ForwardStab",
+				"Terraria.ShortSword",
+				"Terraria.FirstFractal",
+				"Terraria.Zenith",
 			};
 		}
 
@@ -137,13 +137,13 @@ namespace RealThrowing {
 			[ReloadRequired]
 			[DefaultListValue("Mod.Item")]
 			public List<string> Throwing = new List<string> {
-				DALib.Functions.GetItemID(ItemID.MagicDagger),
-				DALib.Functions.GetItemID(ItemID.FlyingKnife),
+				"Terraria.MagicDagger",
+				"Terraria.FlyingKnife",
 			};
 		}
 
 		public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message) {
-			return true;//DALib.Auth.IsAdmin(whoAmI, ref message);
+			return DALib.Auth.IsAdmin(whoAmI, ref message);
 		}
 
 		internal CombinedIgnoredListsSection CombinedIgnoredLists = new CombinedIgnoredListsSection();
