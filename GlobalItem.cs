@@ -10,11 +10,11 @@ using DALib.Functions;
 namespace RealThrowing {
 	public class GItem : GlobalItem {
 		public override void SetDefaults(Item item) {
-			if (item.damage > 0 && item.shoot > 0 && !item.accessory) {
-				bool ToThrowing = Config.Server.ForcedWeaponsLists.Throwing.ContainsCI(item.GetItemID());
-				if (Functions.IsThrowable(item) || ToThrowing) {
+			if (item.shoot > 0 && !item.accessory && item.useStyle > 0)
+			{
+				if (Functions.IsThrowable(item)) {
 					item.mana = 0;
-					item.DamageType = DamageClass.Throwing;
+					item.DamageType = Config.Server.ToRanged ? DamageClass.Ranged : DamageClass.Throwing;
 				}
 			}
 		}

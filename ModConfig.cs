@@ -37,9 +37,15 @@ namespace RealThrowing {
 		[DefaultValue(true)]
 		public bool ConvertYoyos = true;
 
+		[Label("To Ranged Instead")]
+		[Tooltip("Converts thrown items to ranged damage instead")]
+		[BackgroundColor(171, 76, 73)]
+		[ReloadRequired]
+		[DefaultValue(false)]
+		public bool ToRanged = false;
+
 		[Header("Ignored Weapons")]
 		[Label("Ignored Weapons")]
-		[SeparatePage]
 		public IgnoredListsSection IgnoredLists = new IgnoredListsSection();
 		public class IgnoredListsSection {
 			[Label("Read Me!")]
@@ -73,11 +79,18 @@ namespace RealThrowing {
 			[BackgroundColor(171, 76, 73)]
 			[ReloadRequired]
 			public List<string> WeaponProjectileAIStyles = new List<string> {};
+
+			[Label("Ignored Classes [Advanced]")]
+			[Tooltip("All weapons from this class will not have their weapons be automatically converted\nWildcard usage is advised.")]
+			[BackgroundColor(171, 76, 73)]
+			[ReloadRequired]
+			[DefaultListValue("Mod.Class")]
+			public List<string> WeaponClasses = new List<string> {};
 		}
 
 		[Label("Hard Coded Ignored Weapons")]
-		[SeparatePage]
 		[JsonIgnore]
+		[SeparatePage]
 		public HardIgnoredListsSection HardIgnoredLists = new HardIgnoredListsSection();
 		public class HardIgnoredListsSection {
 			[Label("Read Me!")]
@@ -90,7 +103,9 @@ namespace RealThrowing {
 			[Tooltip("All weapons in this list will not be automatically converted")]
 			[BackgroundColor(73, 73, 73)]
 			[JsonIgnore]
-			public List<string> Weapons => new List<string>{};
+			public List<string> Weapons => new List<string> {
+				"Liber.PalmAxe",
+			};
 
 			[Label("Ignored Weapon by Use Styles")]
 			[Tooltip("All weapons with use styles in this list will not be automatically converted")]
@@ -109,20 +124,26 @@ namespace RealThrowing {
 			[BackgroundColor(73, 73, 73)]
 			[JsonIgnore]
 			public List<string> WeaponProjectileAIStyles => new List<string> {
-				"Terraria.Spear",
-				"Terraria.Drill",
-				"Terraria.HeldProjectile",
-				"Terraria.SleepyOctopod",
-				"Terraria.ForwardStab",
-				"Terraria.ShortSword",
-				"Terraria.FirstFractal",
-				"Terraria.Zenith",
+				"Spear",
+				"Drill",
+				"HeldProjectile",
+				"SleepyOctopod",
+				"ForwardStab",
+				"ShortSword",
+				"FirstFractal",
+				"Zenith",
+				"Powder",
 			};
+
+			[Label("Ignored Classes [Advanced]")]
+			[Tooltip("All weapons from this class will not have their weapons be automatically converted\nWildcard usage is advised")]
+			[BackgroundColor(73, 73, 73)]
+			[JsonIgnore]
+			public List<string> WeaponClasses = new List<string> {};
 		}
 
 		[Header("Forced Weapons")]
 		[Label("Forced Weapons")]
-		[SeparatePage]
 		public ForcedWeaponsListsSection ForcedWeaponsLists = new ForcedWeaponsListsSection();
 		public class ForcedWeaponsListsSection {
 			[Label("Read Me!")]
@@ -131,7 +152,7 @@ namespace RealThrowing {
 			[JsonIgnore]
 			public bool ReadMe = true;
 
-			[Label("Forced Weapons")]
+			[Label("Forced Throwing Weapons")]
 			[Tooltip("All weapons in this list will be converted to throwing")]
 			[BackgroundColor(171, 76, 73)]
 			[ReloadRequired]
@@ -139,6 +160,68 @@ namespace RealThrowing {
 			public List<string> Throwing = new List<string> {
 				"Terraria.MagicDagger",
 				"Terraria.FlyingKnife",
+				"PrimeRework.LaserStar",
+				"PrimeRework.SwarmGrenade",
+				"SpiritMod.OakHeart",
+				"SpiritMod.VineChain",
+				"SpiritMod.Florang",
+				"SpiritMod.DuskfeatherDagger",
+				"SpiritMod.GtechGrenade",
+				"StormDiversMod.AncientKnives",
+				"StormDiversMod.BeetleShellWeapon",
+				"StormDiversMod.LizardSpinner",
+				"StormDiversMod.MagicArrow",
+				"StormDiversMod.TurtleShellWeapon",
+			};
+
+			[Label("Forced Flail Weapons")]
+			[Tooltip("All weapons in this list will be converted to throwing when Flail conversion is enabled")]
+			[BackgroundColor(171, 76, 73)]
+			[ReloadRequired]
+			[DefaultListValue("Mod.Item")]
+			public List<string> Flail = new List<string> {
+				"SpiritMod.MagnetFlail",
+			};
+
+			[Label("Forced Yoyo Weapons")]
+			[Tooltip("All weapons in this list will be converted to throwing when Yoyo conversion is enabled")]
+			[BackgroundColor(171, 76, 73)]
+			[ReloadRequired]
+			[DefaultListValue("Mod.Item")]
+			public List<string> Yoyo = new List<string> {
+				"ModLoader.AprilFools",
+			};
+
+			[Label("Forced Classes [Advanced]")]
+			[Tooltip("All weapons from this class will be converted to throwing\nWildcard usage is advised")]
+			[BackgroundColor(171, 76, 73)]
+			[ReloadRequired]
+			[DefaultListValue("Mod.Class.*")]
+			public List<string> WeaponClasses = new List<string> {
+				"SpiritMod.Items.Weapon.Thrown.*",
+				"SpiritMod.Items.Sets.Explosives.Thrown.*",
+				"Bangarang.Content.Items.Weapons.*",
+				"Liber.Content.Items.Weapons.Throwing.*",
+				"SpiritMod.Items.Sets.ThrownMisc.*",
+			};
+
+			[Label("Forced Flail Classes [Advanced]")]
+			[Tooltip("All weapons from this class will be converted to throwing when Flail conversion is enabled\nWildcard usage is advised")]
+			[BackgroundColor(171, 76, 73)]
+			[ReloadRequired]
+			[DefaultListValue("Mod.Class.*")]
+			public List<string> FlailClasses = new List<string> {
+				"SpiritMod.Items.Sets.FlailsMisc.*",
+				"SpiritMod.Items.Weapon.Flails.*",
+			};
+
+			[Label("Forced Yoyo Classes [Advanced]")]
+			[Tooltip("All weapons from this class will be converted to throwing when Yoyo conversion is enabled\nWildcard usage is advised")]
+			[BackgroundColor(171, 76, 73)]
+			[ReloadRequired]
+			[DefaultListValue("Mod.Class.*")]
+			public List<string> YoyoClasses = new List<string> {
+				"SpiritMod.Items.Weapon.Yoyo.*",
 			};
 		}
 
@@ -152,6 +235,7 @@ namespace RealThrowing {
 			internal List<string> WeaponUseStyles => Instance.IgnoredLists.WeaponUseStyles.Concat(Instance.HardIgnoredLists.WeaponUseStyles).ToList();
 			internal List<string> WeaponProjectiles => Instance.IgnoredLists.WeaponProjectiles.Concat(Instance.HardIgnoredLists.WeaponProjectiles).ToList();
 			internal List<string> WeaponProjectileAIStyles => Instance.IgnoredLists.WeaponProjectileAIStyles.Concat(Instance.HardIgnoredLists.WeaponProjectileAIStyles).ToList();
+			internal List<string> WeaponClasses => Instance.IgnoredLists.WeaponClasses.Concat(Instance.HardIgnoredLists.WeaponClasses).ToList();
 		}
 	}
 
