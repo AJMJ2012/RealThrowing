@@ -2,6 +2,7 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using Terraria.Localization;
 using Terraria.ModLoader.Config;
 using Terraria.ID;
 
@@ -9,118 +10,76 @@ using Terraria.ID;
 // Hue shift to get different colours.
 
 namespace RealThrowing {
-	[Label("Server Config")]
 	public class ServerConfig : ModConfig {
 		public override ConfigScope Mode => ConfigScope.ServerSide;
 		public static ServerConfig Instance;
 
 		[Header("Prefixes")]
-		[Label("Throwing prefix pool")]
-		[Tooltip("0: Generic\n1: Melee\n2: Ranged\nNote: Doesn't seem to affect Yoyos and Flails")]
+
 		[Range(0, 2)]
 		[DefaultValue(2)]
 		[Slider]
 		public int PrefixType = 2;
 
-		[Header("Automatic Conversions")]
-		[Label("Convert Flails")]
-		[Tooltip("Allows flails to also be converted to throwing damage")]
+		[Header("AutomaticConversions")]
+
 		[BackgroundColor(171, 76, 73)]
 		[ReloadRequired]
 		[DefaultValue(true)]
 		public bool ConvertFlails = true;
-
-		[Label("Convert Yoyos")]
-		[Tooltip("Allows yoyos to also be converted to throwing damage")]
 		[BackgroundColor(171, 76, 73)]
 		[ReloadRequired]
 		[DefaultValue(true)]
 		public bool ConvertYoyos = true;
-
-		[Label("To Ranged Instead")]
-		[Tooltip("Converts thrown items to ranged damage instead")]
 		[BackgroundColor(171, 76, 73)]
 		[ReloadRequired]
 		[DefaultValue(false)]
 		public bool ToRanged = false;
 
-		[Header("Ignored Weapons")]
-		[Label("Ignored Weapons")]
+		[Header("IgnoredWeapons")]
+
 		public IgnoredListsSection IgnoredLists = new IgnoredListsSection();
 		public class IgnoredListsSection {
-			[Label("Read Me!")]
-			[Tooltip("Some weapons may wrongfully be converted and need to be added to one of these lists")]
 			[BackgroundColor(171, 150, 73)]
 			[JsonIgnore]
 			public bool ReadMe = true;
-
-			[Label("Ignored Weapons by IDs")]
-			[Tooltip("All weapons in this list will not be automatically converted")]
 			[BackgroundColor(171, 76, 73)]
 			[ReloadRequired]
 			[DefaultListValue("Mod.Item")]
 			public List<string> Weapons = new List<string> {};
-
-			[Label("Ignored Weapons by Use Styles")]
-			[Tooltip("All weapons with use styles in this list will not be automatically converted")]
 			[BackgroundColor(171, 76, 73)]
 			[ReloadRequired]
 			public List<string> WeaponUseStyles = new List<string> {};
-
-			[Label("Ignored Weapons by Projectiles")]
-			[Tooltip("All weapons that shoot projectiles in this list will not be automatically converted")]
 			[BackgroundColor(171, 76, 73)]
 			[ReloadRequired]
 			[DefaultListValue("Mod.Projectile")]
 			public List<string> WeaponProjectiles = new List<string> {};
-
-			[Label("Ignored Weapons by Projectile AI Styles")]
-			[Tooltip("All weapons that shoot projectiles with AI styles in this list will not be automatically converted")]
 			[BackgroundColor(171, 76, 73)]
 			[ReloadRequired]
 			public List<string> WeaponProjectileAIStyles = new List<string> {};
-
-			[Label("Ignored Classes [Advanced]")]
-			[Tooltip("All weapons from this class will not have their weapons be automatically converted\nWildcard usage is advised.")]
 			[BackgroundColor(171, 76, 73)]
 			[ReloadRequired]
 			[DefaultListValue("Mod.Class")]
 			public List<string> WeaponClasses = new List<string> {};
 		}
-
-		[Label("Hard Coded Ignored Weapons")]
 		[JsonIgnore]
 		[SeparatePage]
 		public HardIgnoredListsSection HardIgnoredLists = new HardIgnoredListsSection();
 		public class HardIgnoredListsSection {
-			[Label("Read Me!")]
-			[Tooltip("Some weapons may wrongfully be converted and have been added to these lists\nThese lists are hard coded cannot be modified")]
 			[BackgroundColor(171, 150, 73)]
 			[JsonIgnore]
 			public bool ReadMe = true;
-
-			[Label("Ignored Weapons by IDs")]
-			[Tooltip("All weapons in this list will not be automatically converted")]
 			[BackgroundColor(73, 73, 73)]
 			[JsonIgnore]
 			public List<string> Weapons => new List<string> {
 				"Liber.PalmAxe",
 			};
-
-			[Label("Ignored Weapon by Use Styles")]
-			[Tooltip("All weapons with use styles in this list will not be automatically converted")]
 			[BackgroundColor(73, 73, 73)]
 			[JsonIgnore]
 			public List<string> WeaponUseStyles => new List<string> {};
-
-			[Label("Ignored Weapons by Projectiles")]
-			[Tooltip("All weapons that shoot projectiles in this list will not be automatically converted")]
 			[BackgroundColor(73, 73, 73)]
 			[JsonIgnore]
 			public List<string> WeaponProjectiles => new List<string> {};
-
-			[Label("Ignored Weapons by Projectile AI Styles")]
-			[Tooltip("All weapons that shoot projectiles with AI styles in this list will not be automatically converted")]
 			[BackgroundColor(73, 73, 73)]
 			[JsonIgnore]
 			public List<string> WeaponProjectileAIStyles => new List<string> {
@@ -134,26 +93,18 @@ namespace RealThrowing {
 				"Zenith",
 				"Powder",
 			};
-
-			[Label("Ignored Classes [Advanced]")]
-			[Tooltip("All weapons from this class will not have their weapons be automatically converted\nWildcard usage is advised")]
 			[BackgroundColor(73, 73, 73)]
 			[JsonIgnore]
 			public List<string> WeaponClasses = new List<string> {};
 		}
 
-		[Header("Forced Weapons")]
-		[Label("Forced Weapons")]
+		[Header("ForcedWeapons")]
+
 		public ForcedWeaponsListsSection ForcedWeaponsLists = new ForcedWeaponsListsSection();
 		public class ForcedWeaponsListsSection {
-			[Label("Read Me!")]
-			[Tooltip("Some weapons may not be converted and need to be added to one of these lists")]
 			[BackgroundColor(171, 150, 73)]
 			[JsonIgnore]
 			public bool ReadMe = true;
-
-			[Label("Forced Throwing Weapons")]
-			[Tooltip("All weapons in this list will be converted to throwing")]
 			[BackgroundColor(171, 76, 73)]
 			[ReloadRequired]
 			[DefaultListValue("Mod.Item")]
@@ -173,27 +124,18 @@ namespace RealThrowing {
 				"StormDiversMod.MagicArrow",
 				"StormDiversMod.TurtleShellWeapon",
 			};
-
-			[Label("Forced Flail Weapons")]
-			[Tooltip("All weapons in this list will be converted to throwing when Flail conversion is enabled")]
 			[BackgroundColor(171, 76, 73)]
 			[ReloadRequired]
 			[DefaultListValue("Mod.Item")]
 			public List<string> Flail = new List<string> {
 				"SpiritMod.MagnetFlail",
 			};
-
-			[Label("Forced Yoyo Weapons")]
-			[Tooltip("All weapons in this list will be converted to throwing when Yoyo conversion is enabled")]
 			[BackgroundColor(171, 76, 73)]
 			[ReloadRequired]
 			[DefaultListValue("Mod.Item")]
 			public List<string> Yoyo = new List<string> {
 				"ModLoader.AprilFools",
 			};
-
-			[Label("Forced Classes [Advanced]")]
-			[Tooltip("All weapons from this class will be converted to throwing\nWildcard usage is advised")]
 			[BackgroundColor(171, 76, 73)]
 			[ReloadRequired]
 			[DefaultListValue("Mod.Class.*")]
@@ -204,9 +146,6 @@ namespace RealThrowing {
 				"Liber.Content.Items.Weapons.Throwing.*",
 				"SpiritMod.Items.Sets.ThrownMisc.*",
 			};
-
-			[Label("Forced Flail Classes [Advanced]")]
-			[Tooltip("All weapons from this class will be converted to throwing when Flail conversion is enabled\nWildcard usage is advised")]
 			[BackgroundColor(171, 76, 73)]
 			[ReloadRequired]
 			[DefaultListValue("Mod.Class.*")]
@@ -214,9 +153,6 @@ namespace RealThrowing {
 				"SpiritMod.Items.Sets.FlailsMisc.*",
 				"SpiritMod.Items.Weapon.Flails.*",
 			};
-
-			[Label("Forced Yoyo Classes [Advanced]")]
-			[Tooltip("All weapons from this class will be converted to throwing when Yoyo conversion is enabled\nWildcard usage is advised")]
 			[BackgroundColor(171, 76, 73)]
 			[ReloadRequired]
 			[DefaultListValue("Mod.Class.*")]
@@ -225,7 +161,7 @@ namespace RealThrowing {
 			};
 		}
 
-		public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message) {
+		public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref NetworkText message) {
 			return DALib.Auth.IsAdmin(whoAmI, ref message);
 		}
 

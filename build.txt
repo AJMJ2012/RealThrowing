@@ -1,4 +1,4 @@
 author = Dark-Assassin
 displayName = Real Throwing
-version = 1.0.2
-modReferences = DALib@1.4.1
+version = 1.0.3
+modReferences = DALib@1.4.4

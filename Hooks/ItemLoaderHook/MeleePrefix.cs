@@ -7,11 +7,7 @@ using Terraria.ModLoader;
 namespace RealThrowing.Hooks.ItemLoaderHook {
 	class MeleePrefix : ModSystem {
 		public override void Load() {
-			try { HookEndpointManager.Add(MeleePrefixMethod, Override_MeleePrefix); } catch { throw new Exception("Unable to hook into ItemLoader.MeleePrefix"); }
-		}
-
-		public override void Unload() {
-			try { HookEndpointManager.Remove(MeleePrefixMethod, Override_MeleePrefix); } catch {}
+			try { MonoModHooks.Add(MeleePrefixMethod, Override_MeleePrefix); } catch { throw new Exception("Unable to hook into ItemLoader.MeleePrefix"); }
 		}
 
 		static MethodInfo MeleePrefixMethod => typeof(ItemLoader).GetMethod("MeleePrefix", BindingFlags.NonPublic | BindingFlags.Static);

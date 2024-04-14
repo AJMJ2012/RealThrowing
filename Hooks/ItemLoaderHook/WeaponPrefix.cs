@@ -7,11 +7,7 @@ using Terraria.ModLoader;
 namespace RealThrowing.Hooks.ItemLoaderHook {
 	class WeaponPrefix : ModSystem {
 		public override void Load() {
-			try { HookEndpointManager.Add(WeaponPrefixMethod, Override_WeaponPrefix); } catch { throw new Exception("Unable to hook into ItemLoader.WeaponPrefix"); }
-		}
-
-		public override void Unload() {
-			try { HookEndpointManager.Remove(WeaponPrefixMethod, Override_WeaponPrefix); } catch {}
+			try { MonoModHooks.Add(WeaponPrefixMethod, Override_WeaponPrefix); } catch { throw new Exception("Unable to hook into ItemLoader.WeaponPrefix"); }
 		}
 
 		static MethodInfo WeaponPrefixMethod => typeof(ItemLoader).GetMethod("WeaponPrefix", BindingFlags.NonPublic | BindingFlags.Static);

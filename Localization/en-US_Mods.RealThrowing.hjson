@@ -1,0 +1,184 @@
+Configs: {
+	ServerConfig: {
+		DisplayName: Server Config
+
+		Headers: {
+			Prefixes: Prefixes
+			AutomaticConversions: Automatic Conversions
+			IgnoredWeapons: Ignored Weapons
+			ForcedWeapons: Forced Weapons
+		}
+
+		PrefixType: {
+			Label: Throwing prefix pool
+			Tooltip:
+				'''
+				0: Generic
+				1: Melee
+				2: Ranged
+				Note: Doesn't seem to affect Yoyos and Flails
+				'''
+		}
+
+		ConvertFlails: {
+			Label: Convert Flails
+			Tooltip: Allows flails to also be converted to throwing damage
+		}
+
+		ConvertYoyos: {
+			Label: Convert Yoyos
+			Tooltip: Allows yoyos to also be converted to throwing damage
+		}
+
+		ToRanged: {
+			Label: To Ranged Instead
+			Tooltip: Converts thrown items to ranged damage instead
+		}
+
+		IgnoredLists: {
+			Label: Ignored Weapons
+			Tooltip: ""
+		}
+
+		HardIgnoredLists: {
+			Label: Hard Coded Ignored Weapons
+			Tooltip: ""
+		}
+
+		ForcedWeaponsLists: {
+			Label: Forced Weapons
+			Tooltip: ""
+		}
+	}
+
+	IgnoredListsSection: {
+		Tooltip: ""
+
+		ReadMe: {
+			Label: Read Me!
+			Tooltip: Some weapons may wrongfully be converted and need to be added to one of these lists
+		}
+
+		Weapons: {
+			Label: Ignored Weapons by IDs
+			Tooltip: All weapons in this list will not be automatically converted
+		}
+
+		WeaponUseStyles: {
+			Label: Ignored Weapons by Use Styles
+			Tooltip: All weapons with use styles in this list will not be automatically converted
+		}
+
+		WeaponProjectiles: {
+			Label: Ignored Weapons by Projectiles
+			Tooltip: All weapons that shoot projectiles in this list will not be automatically converted
+		}
+
+		WeaponProjectileAIStyles: {
+			Label: Ignored Weapons by Projectile AI Styles
+			Tooltip: All weapons that shoot projectiles with AI styles in this list will not be automatically converted
+		}
+
+		WeaponClasses: {
+			Label: Ignored Classes [Advanced]
+			Tooltip:
+				'''
+				All weapons from this class will not have their weapons be automatically converted
+				Wildcard usage is advised.
+				'''
+		}
+	}
+
+	HardIgnoredListsSection: {
+		Tooltip: ""
+
+		ReadMe: {
+			Label: Read Me!
+			Tooltip:
+				'''
+				Some weapons may wrongfully be converted and have been added to these lists
+				These lists are hard coded cannot be modified
+				'''
+		}
+
+		WeaponClasses: {
+			Label: Ignored Classes [Advanced]
+			Tooltip:
+				'''
+				All weapons from this class will not have their weapons be automatically converted
+				Wildcard usage is advised
+				'''
+		}
+
+		Weapons: {
+			Label: Ignored Weapons by IDs
+			Tooltip: All weapons in this list will not be automatically converted
+		}
+
+		WeaponUseStyles: {
+			Label: Ignored Weapon by Use Styles
+			Tooltip: All weapons with use styles in this list will not be automatically converted
+		}
+
+		WeaponProjectiles: {
+			Label: Ignored Weapons by Projectiles
+			Tooltip: All weapons that shoot projectiles in this list will not be automatically converted
+		}
+
+		WeaponProjectileAIStyles: {
+			Label: Ignored Weapons by Projectile AI Styles
+			Tooltip: All weapons that shoot projectiles with AI styles in this list will not be automatically converted
+		}
+	}
+
+	ForcedWeaponsListsSection: {
+		Tooltip: ""
+
+		ReadMe: {
+			Label: Read Me!
+			Tooltip: Some weapons may not be converted and need to be added to one of these lists
+		}
+
+		Throwing: {
+			Label: Forced Throwing Weapons
+			Tooltip: All weapons in this list will be converted to throwing
+		}
+
+		Flail: {
+			Label: Forced Flail Weapons
+			Tooltip: All weapons in this list will be converted to throwing when Flail conversion is enabled
+		}
+
+		Yoyo: {
+			Label: Forced Yoyo Weapons
+			Tooltip: All weapons in this list will be converted to throwing when Yoyo conversion is enabled
+		}
+
+		WeaponClasses: {
+			Label: Forced Classes [Advanced]
+			Tooltip:
+				'''
+				All weapons from this class will be converted to throwing
+				Wildcard usage is advised
+				'''
+		}
+
+		FlailClasses: {
+			Label: Forced Flail Classes [Advanced]
+			Tooltip:
+				'''
+				All weapons from this class will be converted to throwing when Flail conversion is enabled
+				Wildcard usage is advised
+				'''
+		}
+
+		YoyoClasses: {
+			Label: Forced Yoyo Classes [Advanced]
+			Tooltip:
+				'''
+				All weapons from this class will be converted to throwing when Yoyo conversion is enabled
+				Wildcard usage is advised
+				'''
+		}
+	}
+}

@@ -7,11 +7,7 @@ using Terraria.ModLoader;
 namespace RealThrowing.Hooks.ItemLoaderHook {
 	class RangedPrefix : ModSystem {
 		public override void Load() {
-			try { HookEndpointManager.Add(RangedPrefixMethod, Override_RangedPrefix); } catch { throw new Exception("Unable to hook into ItemLoader.RangedPrefix"); }
-		}
-
-		public override void Unload() {
-			try { HookEndpointManager.Remove(RangedPrefixMethod, Override_RangedPrefix); } catch {}
+			try { MonoModHooks.Add(RangedPrefixMethod, Override_RangedPrefix); } catch { throw new Exception("Unable to hook into ItemLoader.RangedPrefix"); }
 		}
 
 		static MethodInfo RangedPrefixMethod => typeof(ItemLoader).GetMethod("RangedPrefix", BindingFlags.NonPublic | BindingFlags.Static);
