@@ -1,10 +1,9 @@
-using MonoMod.RuntimeDetour.HookGen;
 using System;
 using System.Reflection;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace RealThrowing.Hooks.ItemLoaderHook {
+namespace RealThrowing.Hooks.ItemLoaderHook; 
 	class MeleePrefix : ModSystem {
 		public override void Load() {
 			try { MonoModHooks.Add(MeleePrefixMethod, Override_MeleePrefix); } catch { throw new Exception("Unable to hook into ItemLoader.MeleePrefix"); }
@@ -14,12 +13,11 @@ namespace RealThrowing.Hooks.ItemLoaderHook {
 		delegate bool OrigMeleePrefix(Item item);
 
 		private static bool Override_MeleePrefix(OrigMeleePrefix MeleePrefix, Item item) {
-			if (item.ModItem != null && (bool)typeof(ItemLoader).GetMethod("GeneralPrefix", BindingFlags.NonPublic | BindingFlags.Static).Invoke(null, new object[]{item})) {
-				return item.ModItem.MeleePrefix() || (Config.Server.PrefixType == 1 && item.DamageType == DamageClass.Throwing);
+			if (item.ModItem != null) {
+				return item.ModItem.MeleePrefix() || (!Functions.CheckMods() && Config.Server.MeleePrefixes && item.DamageType == DamageClass.Throwing);
 			}
 			return false;
 		}
 	}
-}
 
 

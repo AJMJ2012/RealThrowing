@@ -1,0 +1,7 @@
+Brings back the glory of the Throwing class by converting various "thrown" weapons to use the ol' Throwing damage type.
+Flails and Yoyos are also included, but can be turned off separately.
+
+Due to the lack of throwing armor and prefixes in vanilla, all ranged and melee stats affect melee weapons.
+This also includes melee effects such as flasks, and ranged ammo saving.
+
+Split Mod's Raquets are also converted (weird choice), but they can also be turned off separately.
